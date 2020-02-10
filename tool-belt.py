@@ -1,8 +1,9 @@
 from tkinter import *
 from PIL import Image,ImageTk
+import pyperclip
 from appmethods import *
 
-root = Tk()
+root = Tk()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 root.title("ToolBelt - version 0.1")
 
 #Sqlizer App
@@ -23,7 +24,8 @@ def launch_sqlizer():
         text_box = Text(master = sqlizer_app, width=30, height=10, relief=SUNKEN)
         text_box.grid(row=2, column=2, columnspan=3)
 
-        format_copy_button = Button(master = sqlizer_app, text = "Format + Copy", command = lambda: formatcopy(text_box.get(1.0, END), FormatSelection.get()))
+        format_copy_button = Button(master = sqlizer_app, text = "Format + Copy")
+        format_copy_button.config(command = lambda: [formatcopy(text_box.get(1.0, END), FormatSelection.get()), changetext(text_box)])
         format_copy_button.grid(row=3, column=3, pady=5)
 
         clear_button = Button(master = sqlizer_app, text = "Clear", command = lambda: text_box.delete(1.0, END))
@@ -50,7 +52,7 @@ regex_icon = PhotoImage(file = "/srv/git/repos/ToolBelt/icons/regexlib.png")
 # Application Buttons
 sqlizer_button = Button(master = root, image = sqlizer_icon, command = launch_sqlizer).grid(row=0, column=1, padx=3, pady=1)
 file_friend_button = Button(master = root, image = file_friend_icon).grid(row=0, column=2, padx=3, pady=1)
-super_duper_button = Button(master = root, image = super_duper_icon).grid(row=0, column=3, padx=3, pady=1)
-regex_button = Button(master = root, image = regex_icon).grid(row=0, column=4, padx=3, pady=1)
+super_duper_button = Button(master = root, image = super_duper_icon).grid(row=1, column=1, padx=3, pady=1)
+regex_button = Button(master = root, image = regex_icon).grid(row=1, column=2, padx=3, pady=1)
 
 root.mainloop()
