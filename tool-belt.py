@@ -42,10 +42,10 @@ def launch_sqlizer():
         right_separator = Frame(master = sqlizer_app, width=50).grid(row=0, column=5)
 
 #Application Button Icons
-sqlizer_icon = PhotoImage(file = "/home/alecslyter/Documents/Python/ToolBelt/icons/sqlizer.png")
-file_friend_icon = PhotoImage(file = "/home/alecslyter/Documents/Python/ToolBelt/icons/filefriend.png")
-super_duper_icon = PhotoImage(file = "/home/alecslyter/Documents/Python/ToolBelt/icons/superduper.png")
-regex_icon = PhotoImage(file = "/home/alecslyter/Documents/Python/ToolBelt/icons/regexlib.png")
+sqlizer_icon = PhotoImage(file = "/srv/git/repos/ToolBelt/icons/sqlizer.png")
+file_friend_icon = PhotoImage(file = "/srv/git/repos/ToolBelt/icons/filefriend.png")
+super_duper_icon = PhotoImage(file = "/srv/git/repos/ToolBelt/icons/superduper.png")
+regex_icon = PhotoImage(file = "/srv/git/repos/ToolBelt/icons/regexlib.png")
 
 # Application Buttons
 sqlizer_button = Button(master = root, image = sqlizer_icon, command = launch_sqlizer).grid(row=0, column=1, padx=3, pady=1)
