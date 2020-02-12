@@ -18,7 +18,11 @@ def formatcopy(inputlist: 'str', formatoption: 'int') -> str:
         pyperclip.copy(listresult2)
     return
 
+# Application(s): sqlizer
+# Summary: Updates a Tkinter Text widget replacing current text with whatever is currently in the clipboard.
 def changetext(textbox):
     textbox.delete(1.0, END)
     textbox.insert(1.0, pyperclip.paste())
     return
+
+
