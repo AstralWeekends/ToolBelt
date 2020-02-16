@@ -12,6 +12,7 @@ class Sqlizer:
             if sqlizer_app.state() == "normal": sqlizer_app.focus()
         except:
             sqlizer_app = Toplevel(master = self.root_widget)
+            sqlizer_app.resizable(width = 0, height = 0)
             sqlizer_app.title("s q l i z e r")
 
             left_separator = Frame(master = sqlizer_app, width=50)
