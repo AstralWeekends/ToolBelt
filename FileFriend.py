@@ -19,16 +19,21 @@ class FileFriend:
             left_separator.grid(row = 0, column = 1)
 
             file1_button = Button(master = filefriend_app, text = "File 1")
-            file1_button.config(command = lambda: self.openfile())
+            file1_button.config(command = lambda: self.openfile(filepath1))
             file1_button.grid(row = 1, column = 2)
 
             file2_button = Button(master = filefriend_app, text = "File 2")
+            file2_button.config(command = lambda: self.openfile(filepath2))
             file2_button.grid(row = 2, column = 2)
 
+            filepath1 = StringVar()
             file1_entry = Entry(master = filefriend_app, width = 40)
+            file1_entry.config(textvariable = filepath1)
             file1_entry.grid(row = 1, column = 3, padx = 5)
 
+            filepath2 = StringVar()
             file2_entry = Entry(master = filefriend_app, width = 40)
+            file2_entry.config(textvariable = filepath2)
             file2_entry.grid(row = 2, column = 3, padx = 5)
 
             instr_text = Label(master = filefriend_app, text = "Select 2 files to compare:")
@@ -40,9 +45,11 @@ class FileFriend:
             right_separator = Frame(master = filefriend_app, width = 50)
             right_separator.grid(row = 0, column = 4)
 
-    def openfile(self):
-        self.filename = filedialog.askopenfilename(initialdir = "/", title = "Select a File")
-        print(self.filename)
-        return self.filename
+    def openfile(self, filepath):
+        self.filename = filedialog.askopenfilename(initialdir = "/home/alecslyter/Documents", title = "Select a File")
+        if self.filename != '':
+            filepath.set(self.filename)
+            print(self.filename)
+            return self.filename
 
 
