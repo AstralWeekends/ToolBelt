@@ -1,4 +1,5 @@
 from tkinter import filedialog
+from tkinter import messagebox
 from tkinter import *
 
 class FileFriend:
@@ -40,16 +41,36 @@ class FileFriend:
             instr_text.grid(row = 0, column = 3)
 
             compare_button = Button(master = filefriend_app, text = "Compare")
+            compare_button.config(command = lambda: self.comparefiles(filepath1, filepath2))
             compare_button.grid(row = 3, column = 3, pady = 5)
 
             right_separator = Frame(master = filefriend_app, width = 50)
             right_separator.grid(row = 0, column = 4)
 
     def openfile(self, filepath):
-        self.filename = filedialog.askopenfilename(initialdir = "/home/alecslyter/Documents", title = "Select a File")
-        if self.filename != '':
-            filepath.set(self.filename)
-            print(self.filename)
-            return self.filename
+        
+        ftypes = [
+            ('Text Files', '*.txt *.xml *.csv *.rpt *.html')
+        ]
+        self.filename = filedialog.askopenfilename(initialdir = "/home/alecslyter/Documents", title = "Select a File", filetypes = ftypes)
+        try:
+            if self.filename != '':
+                filepath.set(self.filename)
+                return self.filename
+        except:
+            messagebox.showerror(title = "Error", message = "Could not open file.")
 
+    def comparefiles(self, file1, file2):
+        if file1.get() == '' or file2.get() == '':
+            messagebox.showerror(title = "Error", message = "Please enter a file in both boxes.")
+        else:
+            try:
+                with open(file1.get()) as f1:
+                    file1_content = f1.readlines()
+                with open(file2.get()) as f2:
+                    file2_content = f2.readlines()
 
+                print(file1_content)
+                print(file2_content)
+            except:
+                messagebox.showerror(title = "Error", message = "Contents of 1 or both files could not be read.") 
