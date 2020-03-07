@@ -1,6 +1,8 @@
 from tkinter import filedialog
 from tkinter import messagebox
 from tkinter import *
+import difflib
+
 
 class FileFriend:
 
@@ -70,7 +72,7 @@ class FileFriend:
                 with open(file2.get()) as f2:
                     file2_content = f2.readlines()
 
-                print(file1_content)
-                print(file2_content)
+                diff_file = difflib.HtmlDiff().make_file(file1_content, file2_content)
+
             except:
                 messagebox.showerror(title = "Error", message = "Contents of 1 or both files could not be read.") 
