@@ -2,6 +2,7 @@ from tkinter import filedialog
 from tkinter import messagebox
 from tkinter import *
 import difflib
+import webbrowser
 
 
 class FileFriend:
@@ -54,7 +55,7 @@ class FileFriend:
         ftypes = [
             ('Text Files', '*.txt *.xml *.csv *.rpt *.html')
         ]
-        self.filename = filedialog.askopenfilename(initialdir = "/home/alecslyter/Documents", title = "Select a File", filetypes = ftypes)
+        self.filename = filedialog.askopenfilename(initialdir = "/home/alecslyter/Documents/Python/test_input", title = "Select a File", filetypes = ftypes)
         try:
             if self.filename != '':
                 filepath.set(self.filename)
@@ -73,6 +74,11 @@ class FileFriend:
                     file2_content = f2.readlines()
 
                 diff_file = difflib.HtmlDiff().make_file(file1_content, file2_content)
+                with open('/home/alecslyter/Documents/Python/test_output/html_out3.html', 'w') as output:
+                    output.write(diff_file)
+                
+                result_file = "/home/alecslyter/Documents/Python/test_output/html_out3.html" 
+                webbrowser.open(result_file, new=2)
 
             except:
-                messagebox.showerror(title = "Error", message = "Contents of 1 or both files could not be read.") 
+                messagebox.showerror(title = "Error", message = "Contents of 1 or both files could not be read.")
