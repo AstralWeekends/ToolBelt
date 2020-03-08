@@ -1,2 +1,5 @@
 __pycache__/appmethods.cpython-36.pyc
 _defunct_sqlizer.py
+__pycache__/FileFriend.cpython-37.pyc
+__pycache__/sqlizer.cpython-37.pyc
+.gitignore
