@@ -77,6 +77,8 @@ class FileFriend:
                                                       filetypes = [('HTML', '*.html')],
                                                       defaultextension = ".html")
 
-            diff_file = difflib.HtmlDiff().make_file(file1_content, file2_content)
-            with open(self.save_file.name, 'w') as output:
-                output.write(diff_file)
+            while hasattr(self.save_file, 'name'):
+                diff_file = difflib.HtmlDiff().make_file(file1_content, file2_content)
+                with open(self.save_file.name, 'w') as output:
+                    output.write(diff_file)
+                    break
