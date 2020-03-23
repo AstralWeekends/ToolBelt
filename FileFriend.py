@@ -31,12 +31,12 @@ class FileFriend:
             file2_button.grid(row = 2, column = 2)
 
             filepath1 = StringVar()
-            file1_entry = Entry(master = filefriend_app, width = 40)
+            file1_entry = Entry(master = filefriend_app, width = 40, state = 'readonly')
             file1_entry.config(textvariable = filepath1)
             file1_entry.grid(row = 1, column = 3, padx = 5)
 
             filepath2 = StringVar()
-            file2_entry = Entry(master = filefriend_app, width = 40)
+            file2_entry = Entry(master = filefriend_app, width = 40, state = 'readonly')
             file2_entry.config(textvariable = filepath2)
             file2_entry.grid(row = 2, column = 3, padx = 5)
 
@@ -65,20 +65,21 @@ class FileFriend:
             messagebox.showerror(title = "Error", message = "Could not open file.")
 
     def comparefiles(self, file1, file2):
-        if file1.get() == '' or file2.get() == '':
-            messagebox.showerror(title = "Error", message = "Please enter a file in both boxes.")
-        else:
+        try:
             with open(file1.get()) as f1:
                 file1_content = f1.readlines()
             with open(file2.get()) as f2:
                 file2_content = f2.readlines()
 
             self.save_file = filedialog.asksaveasfile(mode="w", title = "Save As...",
-                                                      filetypes = [('HTML', '*.html')],
-                                                      defaultextension = ".html")
+                                                    filetypes = [('HTML', '*.html')],
+                                                    defaultextension = ".html")
 
             while hasattr(self.save_file, 'name'):
                 diff_file = difflib.HtmlDiff().make_file(file1_content, file2_content)
                 with open(self.save_file.name, 'w') as output:
                     output.write(diff_file)
                     break
+                
+        except FileNotFoundError:
+            messagebox.showerror(title = "File Not Found", message = "One or more files selected could not be found, please try again.")
