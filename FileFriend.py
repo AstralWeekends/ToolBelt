@@ -73,12 +73,12 @@ class FileFriend:
                 with open(file2.get()) as f2:
                     file2_content = f2.readlines()
 
-                diff_file = difflib.HtmlDiff().make_file(file1_content, file2_content)
+                '''diff_file = difflib.HtmlDiff().make_file(file1_content, file2_content)
                 with open('/home/alecslyter/Documents/Python/test_output/html_out3.html', 'w') as output:
                     output.write(diff_file)
                 
                 result_file = "/home/alecslyter/Documents/Python/test_output/html_out3.html" 
-                webbrowser.open(result_file, new=2)
+                webbrowser.open(result_file, new=2)'''
 
             except:
                 messagebox.showerror(title = "Error", message = "Contents of 1 or both files could not be read.")
