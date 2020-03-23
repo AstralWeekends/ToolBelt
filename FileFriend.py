@@ -55,7 +55,8 @@ class FileFriend:
         ftypes = [
             ('Text Files', '*.txt *.xml *.csv *.rpt *.html')
         ]
-        self.filename = filedialog.askopenfilename(initialdir = "/home/alecslyter/Documents/Python/test_input", title = "Select a File", filetypes = ftypes)
+        self.filename = filedialog.askopenfilename(initialdir = "/home/alecslyter/Documents/Python/test_input",
+                                                   title = "Select a File", filetypes = ftypes)
         try:
             if self.filename != '':
                 filepath.set(self.filename)
@@ -67,18 +68,15 @@ class FileFriend:
         if file1.get() == '' or file2.get() == '':
             messagebox.showerror(title = "Error", message = "Please enter a file in both boxes.")
         else:
-            try:
-                with open(file1.get()) as f1:
-                    file1_content = f1.readlines()
-                with open(file2.get()) as f2:
-                    file2_content = f2.readlines()
+            with open(file1.get()) as f1:
+                file1_content = f1.readlines()
+            with open(file2.get()) as f2:
+                file2_content = f2.readlines()
 
-                '''diff_file = difflib.HtmlDiff().make_file(file1_content, file2_content)
-                with open('/home/alecslyter/Documents/Python/test_output/html_out3.html', 'w') as output:
-                    output.write(diff_file)
-                
-                result_file = "/home/alecslyter/Documents/Python/test_output/html_out3.html" 
-                webbrowser.open(result_file, new=2)'''
+            self.save_file = filedialog.asksaveasfile(mode="w", title = "Save As...",
+                                                      filetypes = [('HTML', '*.html')],
+                                                      defaultextension = ".html")
 
-            except:
-                messagebox.showerror(title = "Error", message = "Contents of 1 or both files could not be read.")
+            diff_file = difflib.HtmlDiff().make_file(file1_content, file2_content)
+            with open(self.save_file.name, 'w') as output:
+                output.write(diff_file)
