@@ -43,7 +43,7 @@ class FileFriend:
             instr_text = Label(master = filefriend_app, text = "Select 2 files to compare:")
             instr_text.grid(row = 0, column = 3)
 
-            compare_button = Button(master = filefriend_app, text = "Compare")
+            compare_button = Button(master = filefriend_app, text = "Compare and Save Results")
             compare_button.config(command = lambda: self.comparefiles(filepath1, filepath2))
             compare_button.grid(row = 3, column = 3, pady = 5)
 
@@ -83,3 +83,6 @@ class FileFriend:
                 
         except FileNotFoundError:
             messagebox.showerror(title = "File Not Found", message = "One or more files selected could not be found, please try again.")
+        
+        print(file1.get())
+        print(file2.get())
