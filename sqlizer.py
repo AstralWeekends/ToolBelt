@@ -14,6 +14,8 @@ class Sqlizer:
             sqlizer_app = Toplevel(master = self.root_widget)
             sqlizer_app.resizable(width = 0, height = 0)
             sqlizer_app.title("s q l i z e r")
+            sqlizer_app.transient(master = self.root_widget)
+
 
             left_separator = Frame(master = sqlizer_app, width=50)
             left_separator.grid(row=0, column=1)
@@ -37,11 +39,24 @@ class Sqlizer:
             # Radio Button Setup. SSMS = option 1, SQL Browser = option 2
             FormatSelection = IntVar()
             FormatSelection.set(1)
-            radio_ssms = Radiobutton(master = sqlizer_app, text = "SQL Server", variable = FormatSelection, value = 1)
+            radio_ssms = Radiobutton(master = sqlizer_app, text = "SQL Server", variable = FormatSelection, value = 1, highlightthickness = 0)
             radio_ssms.grid(row=6, column=2, pady=20)
-            radio_sqlbrowser = Radiobutton(master = sqlizer_app, text = "SQL Browser", variable = FormatSelection, value = 2)
+            radio_sqlbrowser = Radiobutton(master = sqlizer_app, text = "SQL Browser", variable = FormatSelection, value = 2, highlightthickness = 0)
             radio_sqlbrowser.grid(row=6, column=4, pady=20)
             right_separator = Frame(master = sqlizer_app, width=50).grid(row=0, column=5)
+
+            #Color configuration for elements above:
+            
+            #Application Background
+            sqlizer_app.config(bg="#00ccff")
+            #Application Button Background
+            format_copy_button.config(bg="#ff8080")
+            clear_button.config(bg="#ff8080")
+            quit_button.config(bg="#ff8080")
+            radio_ssms.config(bg="#00ccff")
+            radio_sqlbrowser.config(bg="#00ccff")
+            #Label Background
+            box_label.config(bg="#00ccff")
 
     # Summary: Take a list, formats using 1 of 2 options and copies to clipboard.
     # Option 1 = SSMS [,,,] & Option 2 = SQL Browser [('','','')]
