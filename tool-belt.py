@@ -10,6 +10,10 @@ root.title("t  o  o  l  b  e  l  t  : :  v  e  r  s  i  o  n  0.2")
 sqlizer_app = Sqlizer(root)
 filefriend_app = FileFriend(root)
 
+#Main Application Icon
+toolbelt_icon = PhotoImage(file = "/srv/git/repos/ToolBelt/icons/toolbelt-main-icon.png")
+root.iconphoto(False, toolbelt_icon)
+
 #Application Button Icons
 sqlizer_icon = PhotoImage(file = "/srv/git/repos/ToolBelt/icons/sqlizer.png")
 file_friend_icon = PhotoImage(file = "/srv/git/repos/ToolBelt/icons/filefriend.png")
