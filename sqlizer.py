@@ -1,4 +1,3 @@
-#test2
 from tkinter import *
 import pyperclip
 
