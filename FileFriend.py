@@ -18,6 +18,7 @@ class FileFriend:
             filefriend_app = Toplevel(master = self.root_widget)
             filefriend_app.resizable(width = 0, height = 0)
             filefriend_app.title("f i l e f r i e n d")
+            filefriend_app.transient(master = self.root_widget)
 
             left_separator = Frame(master = filefriend_app, width = 50)
             left_separator.grid(row = 0, column = 1)
@@ -46,6 +47,9 @@ class FileFriend:
             compare_button = Button(master = filefriend_app, text = "Compare and Save Results")
             compare_button.config(command = lambda: self.comparefiles(filepath1, filepath2))
             compare_button.grid(row = 3, column = 3, pady = 5)
+
+            quit_button = Button(master = filefriend_app, text = "Quit", command = filefriend_app.destroy)
+            quit_button.grid(row=4, column=3, pady=5)
 
             right_separator = Frame(master = filefriend_app, width = 50)
             right_separator.grid(row = 0, column = 4)
