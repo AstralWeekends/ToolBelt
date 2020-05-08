@@ -3,3 +3,6 @@ _defunct_sqlizer.py
 __pycache__/FileFriend.cpython-37.pyc
 __pycache__/sqlizer.cpython-37.pyc
 .gitignore
+toolbelt_workspace.code-workspace
+.vscode/settings.json
+__pycache__/SuperDuper.cpython-37.pyc
