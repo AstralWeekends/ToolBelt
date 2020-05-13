@@ -61,25 +61,36 @@ class SuperDuper:
             right_separator = Frame(master = superduper_app, width=50)
             right_separator.grid(row=0, column=7)
 
-            #Take selected command and route to appropriate function.
+            #Take selected command and route to appropriate function aftering converting to a list.
             def command_router(command):
+
                 data_in = text_box_left.get(1.0, END)
+                list_in = data_in.split(sep = '\n')
+                text_box_right.delete(1.0, END)
 
                 if command == "Remove Dups":
-                    text_box_right.delete(1.0, END)
-                    result = remove_dups(data_in)
+                    result = remove_dups(list_in)
                     return(result)
                 
-                #if command == "Extract Dups":
-                
+                if command == "Extract Dups":
+                    result = extract_dups(list_in)
+                    return(result)
                 #if command == "Count Dups by Value":
+                    #return(result)
+
             
-            def remove_dups(inputstring):
-                #convert string to list
-                listified = inputstring.split(sep = '\n')
+            def remove_dups(list_in):
                 #remove dups from list
-                listified_no_dups = list(dict.fromkeys(listified))
+                listified_no_dups = list(dict.fromkeys(list_in))
                 #return list as a string to text_box_right
                 return(text_box_right.insert(1.0, '\n'.join(listified_no_dups)))
+
+            def extract_dups(list_in):
+                list_out = []
+                for item in list_in:
+                    if list_in.count(item) > 1:
+                        if item not in list_out:
+                            list_out.append(item)
+                return(text_box_right.insert(1.0, '\n'.join(list_out)))
 
             
