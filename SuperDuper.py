@@ -75,8 +75,10 @@ class SuperDuper:
                 if command == "Extract Dups":
                     result = extract_dups(list_in)
                     return(result)
-                #if command == "Count Dups by Value":
-                    #return(result)
+
+                if command == "Count Dups by Value":
+                    result = count_dups_by_value(list_in)
+                    return(result)
 
             
             def remove_dups(list_in):
@@ -92,5 +94,19 @@ class SuperDuper:
                         if item not in list_out:
                             list_out.append(item)
                 return(text_box_right.insert(1.0, '\n'.join(list_out)))
+            
+            def count_dups_by_value(list_in):
+                list_out = []
+                counts = {item: list_in.count(item) for item in list_in if list_in.count(item) > 1 and item != ''}
+                for k in counts:
+                    str1 = str(k) + " - " + str(counts.get(k))
+                    list_out.append(str1)
+                return(text_box_right.insert(1.0, '\n'.join(list_out)))
+
+
+
+
+
+
 
             
