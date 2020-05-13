@@ -1,4 +1,5 @@
 from tkinter import *
+import pyperclip
 
 class SuperDuper:
 
@@ -19,7 +20,66 @@ class SuperDuper:
             left_separator.grid(row=0, column=1)
 
             box_label = Label(master = superduper_app, text="Enter a list:")
-            box_label.grid(row=1, column=2, pady=10)
+            box_label.grid(row=1, column=3, sticky = S+W, pady = 5)
 
-            text_box = Text(master = superduper_app, width=30, height=10, relief=SUNKEN)
-            text_box.grid(row=2, column=2, columnspan=3)
+            copy_button_left = Button(master = superduper_app, text = 'Copy', wraplength = 1, height=7)
+            copy_button_left.grid(row=2, column=2, rowspan=2,sticky = N)
+            copy_button_left.config(command = lambda: pyperclip.copy(text_box_left.get(1.0, END)))
+
+            clear_button_left = Button(master = superduper_app, text = 'Clear', wraplength = 1, height=7)
+            clear_button_left.grid(row=3, column=2,sticky = S)
+            clear_button_left.config(command = lambda: text_box_left.delete(1.0, END))
+
+            text_box_left = Text(master = superduper_app, width=30, height=15, relief=SUNKEN)
+            text_box_left.grid(row=2, column=3, rowspan=2, sticky = N)
+
+            mid_separator = Label(master = superduper_app, text="----->")
+            mid_separator.grid(row=2, column=4, rowspan=2, padx=10)
+
+            text_box_right = Text(master = superduper_app, width=30, height=15, relief=SUNKEN)
+            text_box_right.grid(row=2, column=5, rowspan=2, sticky = N)
+
+            copy_button_right = Button(master = superduper_app, text = 'Copy', wraplength = 1, height=15)
+            copy_button_right.grid(row=2, column=6, rowspan = 2)
+            copy_button_right.config(command = lambda: pyperclip.copy(text_box_right.get(1.0, END)))
+
+            command_label = Label(master = superduper_app, text = "Select Command:")
+            command_label.grid(row=4, column = 3, sticky = E)
+
+            command = StringVar(superduper_app)
+            command.set("Remove Dups")
+            command_dropdown = OptionMenu(superduper_app, command, "Remove Dups", "Extract Dups", "Count Dups by Value")
+            command_dropdown.grid(row=4, column=4, pady=5, sticky = W, columnspan=2)
+
+            execute_button = Button(master = superduper_app, text = "Execute")
+            execute_button.grid(row = 5, column = 4, pady=5, sticky = N+S+E+W)
+            execute_button.config(command = lambda: command_router(command.get()))
+
+            quit_button = Button(master = superduper_app, text = "Quit", command = superduper_app.destroy)
+            quit_button.grid(row = 6, column = 4, pady=5, sticky = N+S+E+W)
+
+            right_separator = Frame(master = superduper_app, width=50)
+            right_separator.grid(row=0, column=7)
+
+            #Take selected command and route to appropriate function.
+            def command_router(command):
+                data_in = text_box_left.get(1.0, END)
+
+                if command == "Remove Dups":
+                    text_box_right.delete(1.0, END)
+                    result = remove_dups(data_in)
+                    return(result)
+                
+                #if command == "Extract Dups":
+                
+                #if command == "Count Dups by Value":
+            
+            def remove_dups(inputstring):
+                #convert string to list
+                listified = inputstring.split(sep = '\n')
+                #remove dups from list
+                listified_no_dups = list(dict.fromkeys(listified))
+                #return list as a string to text_box_right
+                return(text_box_right.insert(1.0, '\n'.join(listified_no_dups)))
+
+            
